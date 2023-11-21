@@ -1,5 +1,11 @@
 ### Informe del Proyecto
 
+### Estudiantes
+Samuel Matias Escobar Bejarano
+56825
+Ignacio Lizarazu Aramayo
+47046
+
 #### IMPORTANTE
 Para el correcto funcionamiento es importante:
 - MODIFICAR el archivo /fastapi/predictor en la linea 3 donde es necesario introducir el PATH absoluto de la carpeta donde se clono el repositorio
