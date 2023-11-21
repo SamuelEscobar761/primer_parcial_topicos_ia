@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [prediction, setPrediction] = useState(null);
+  const [predictionMessage, setPredictionMessage] = useState("");
   const [serviceStatus, setServiceStatus] = useState("");
 
   const handleFileChange = (event) => {
@@ -21,9 +21,21 @@ function App() {
           'Content-Type': 'multipart/form-data'
         }
       });
-      setPrediction(response.data);
+
+      const numPistols = response.data.num_pistols;
+      const numPersons = response.data.num_persons;
+      if (numPistols > 0 && numPersons > 0) {
+        setPredictionMessage(`Se encontraron ${numPistols} armas y ${numPersons} personas cerca.`);
+      } else if (numPistols === 0 && numPersons > 0) {
+        setPredictionMessage(`No se encontró ninguna arma pero se encontraron ${numPersons} personas cerca.`);
+      }else if (numPistols > 0 && numPersons === 0) {
+        setPredictionMessage(`Se encontraron ${numPistols} armas pero ninguna cerca.`);
+      }else {
+        setPredictionMessage("No se encontró ninguna arma.");
+      }
     } catch (error) {
       console.error('Error al realizar la predicción:', error);
+      setPredictionMessage("Error al realizar la predicción.");
     }
   };
 
@@ -55,7 +67,7 @@ function App() {
       <h1>Detector de Armas</h1>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Subir y Predecir</button>
-      {prediction && <div>Resultado de la Predicción: {JSON.stringify(prediction)}</div>}
+      {predictionMessage && <div>{predictionMessage}</div>}
       <button onClick={checkServiceStatus}>Verificar Estado del Servicio</button>
       {serviceStatus && <div>Estado del Servicio: {serviceStatus}</div>}
       <button onClick={downloadReport}>Descargar Reporte</button>

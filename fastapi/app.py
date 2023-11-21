@@ -72,7 +72,7 @@ async def predict_gun(file: UploadFile = File(...)):
 
         # Guarda la imagen con las cajas delimitadoras de personas y armas
         img_with_boxes_person = Image.fromarray(img_array)
-        img_with_boxes_person.save(f"fastapi/images_upload/{file.filename.split('.')[0]}_with_boxes.jpg")  # Guarda la imagen en la carpeta fastapi
+        img_with_boxes_person.save(f"images_upload/{file.filename.split('.')[0]}_with_boxes.jpg")  # Guarda la imagen en la carpeta fastapi
 
         # Registro de la predicción en el archivo CSV
         with open(report_file, "a", newline="") as f:

@@ -1,7 +1,8 @@
 from ultralytics import YOLO
 
-MODEL_PATH = "E:/UPB/topicos ia/primer_parcial_topicos_ia/model/best1.pt"
-MODEL_PERSONS_PATH = "E:/UPB/topicos ia/primer_parcial_topicos_ia/model/yolov8n.pt"
+PATH = "C:/Users/samue/OneDrive/Documentos/UPB/Topicos IA/" #Path absoluto necesario de cambiar para el correcto funcionamiento
+MODEL_PATH = f"{PATH}primer_parcial_topicos_ia/model/best1.pt"
+MODEL_PERSONS_PATH = f"{PATH}primer_parcial_topicos_ia/model/yolov8n.pt"
 
 class GunsPredictor:
     def __init__(self, model_path: str = MODEL_PATH):
@@ -38,7 +39,6 @@ class PersonsPredictor:
         # Cuenta las pistolas detectadas
         num_persons = sum(1 for cls in classes if result_obj.names[int(cls)] == 'person')
         persons_boxes = []
-        for cls in classes:
-            if result_obj.names[int(cls)] == 'person':
-                persons_boxes.append(boxes.xywh[int(cls)])
+        for i in range(0, num_persons):
+            persons_boxes.append(boxes.xywh[i])
         return num_persons, persons_boxes
