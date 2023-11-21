@@ -1,89 +1,59 @@
-# Reporte de Desarrollo y Despliegue de la API FastAPI y la Aplicación React
+### Informe del Proyecto
 
-## Descripción General
+#### IMPORTANTE
+Para el correcto funcionamiento es importante:
+- MODIFICAR el archivo /fastapi/predictor en la linea 3 donde es necesario introducir el PATH absoluto de la carpeta donde se clono el repositorio
+- En una terminal dirigirse hasta la carpeta de /web/react-gun-detector/ y ejecutar el comando npm install para luego ejecutarlo con npm run start
+- En una terminal diferente dirigirse hasta la carpeta /fastapi/ y ejecutar el comando uvicorn app:app -reload
 
-Este proyecto consta de una API desarrollada con FastAPI y una aplicación cliente desarrollada con React. La API está diseñada para detectar armas en imágenes utilizando un modelo de visión artificial. La aplicación React permite a los usuarios interactuar con la API, subiendo imágenes para su análisis, verificando el estado del servicio y descargando reportes de predicciones.
+#### 1. `app.py` (Aplicación FastAPI)
+- *Funcionalidad*: Este archivo Python parece ser la parte de backend de una aplicación web utilizando FastAPI. Incluye importaciones para el manejo de archivos, imágenes y solicitudes HTTP.
+- *Características Clave*:
+  - Manejo de archivos con CSV y procesamiento de imágenes con OpenCV y PIL.
+  - Configuración de FastAPI con rutas para subir y procesar archivos.
+  - Configuración de middleware CORS (Cross-Origin Resource Sharing), probablemente para permitir solicitudes desde el frontend.
+  - Integración con un módulo llamado `predictor` (posiblemente `predictor.py`), que parece manejar tareas específicas de predicción relacionadas con armas y personas.
 
-### Características de la API FastAPI
+- *Requisitos*:
+  - Entorno Python.
+  - Biblioteca FastAPI.
+  - Bibliotecas para manejo de archivos e imágenes (`io`, `csv`, `cv2`, `PIL`).
+  - Configuración adecuada del módulo `predictor`.
 
-- *Detección de Armas:* Analiza imágenes subidas para detectar la presencia de armas.
-- *Reporte de Estado:* Proporciona información sobre el estado actual del servicio.
-- *Generación de Reportes:* Crea un reporte en formato CSV con el historial de predicciones.
+#### 2. `App.js` (Frontend React)
+- *Funcionalidad*: Este archivo JavaScript es parte de un frontend basado en React. Maneja interacciones del usuario, selecciones de archivos y se comunica con el backend.
+- *Características Clave*:
+  - Selección y manejo de archivos para subida.
+  - Integración con Axios para realizar solicitudes HTTP al backend.
+  - Gestión de estado para la selección de archivos, mensajes de predicción y estado del servicio.
 
-### Características de la Aplicación React
+- *Requisitos*:
+  - Entorno Node.js.
+  - Biblioteca React.
+  - Axios para solicitudes HTTP.
+  - Archivo CSS para estilos (referenciado como `./App.css`).
 
-- *Interfaz de Usuario:* Permite a los usuarios cargar imágenes para análisis.
-- *Visualización de Resultados:* Muestra si se han detectado armas en las imágenes cargadas.
-- *Descarga de Reportes:* Facilita la descarga de reportes generados por la API.
+#### 3. `predictor.py`
+- *Funcionalidad*: No se pudo acceder al contenido directamente. Presumiblemente, contiene la lógica para hacer predicciones, posiblemente relacionadas con armas y personas, como se infiere de `app.py`.
+- *Requisitos*:
+  - Entorno Python.
+  - Bibliotecas para procesamiento y predicción (potencialmente OpenCV, PIL, o similares).
+  - Debe estar correctamente implementado e integrado con `app.py`.
 
-## Requerimientos y Configuración
+#### Pasos para Ejecutar la Aplicación
+1. *Configuración del Backend (FastAPI)*
+   - Asegurarse de que Python y las bibliotecas requeridas estén instaladas.
+   - Configurar `predictor.py` correctamente.
+   - Modificar la línea 3 en `predictor.py` para especificar la ruta absoluta donde se clonó el repositorio.
+   - Ejecutar `app.py` para iniciar el servidor FastAPI.
 
-### Para la API FastAPI
+2. *Configuración del Frontend (React)*
+   - Asegurarse de que Node.js esté instalado.
+   - Instalar React y Axios.
+   - Ejecutar la aplicación React (`App.js`).
 
-- *Python:* Versión 3.7 o superior.
-- *Bibliotecas de Python:* FastAPI, Uvicorn (como servidor), Pillow, NumPy, y cualquier otra dependencia requerida por `predictor`.
-- *Modelo de Visión Artificial:* El modelo debe estar correctamente configurado y accesible por la API.
+3. *Interacción*
+   - Utilizar el frontend de React para subir archivos.
+   - El backend procesa los archivos y devuelve resultados, que se muestran en el frontend.
 
-#### Instalación de Dependencias
-
-Instalar las dependencias con pip:
-
-bash
-pip install fastapi uvicorn python-multipart pillow numpy
-
-
-#### Ejecución de la API
-
-Ejecutar el archivo principal (por ejemplo, `main.py`) con Uvicorn:
-
-bash
-uvicorn main:app --reload
-
-
-### Para la Aplicación React
-
-- *Node.js y npm:* Se requiere la última versión estable.
-- *React:* Framework para el desarrollo de la interfaz de usuario.
-- *Axios:* Para realizar solicitudes HTTP a la API.
-
-#### Instalación de Dependencias
-
-Crear un nuevo proyecto React y añadir Axios:
-
-bash
-npx create-react-app react-gun-detector
-cd react-gun-detector
-npm install axios
-
-
-#### Ejecución de la Aplicación
-
-Iniciar la aplicación en modo de desarrollo:
-
-bash
-npm start
-
-
-## Problemas Encontrados y Soluciones
-
-### Problema de CORS en la API
-
-*Problema:* La aplicación React no podía conectarse a la API FastAPI debido a restricciones de CORS.
-
-*Solución:* Se configuró el middleware CORS en FastAPI para permitir solicitudes desde el origen de la aplicación React.
-
-### Formato de Respuesta de la API
-
-*Problema:* La API devolvía datos crudos que no eran claros para el usuario final.
-
-*Solución:* Se modificó la API y la aplicación React para interpretar los datos y mostrar mensajes amigables al usuario.
-
-### Manejo de Archivos en React
-
-*Problema:* Dificultades en el manejo y carga de archivos de imagen en la aplicación React.
-
-*Solución:* Uso de `FormData` en React y configuración adecuada de los endpoints en FastAPI para manejar los archivos multimedia.
-
-## Conclusión
-
-Este conjunto de herramientas proporciona una solución completa y eficiente para la detección de armas en imágenes. La API FastAPI procesa las imágenes y genera reportes, mientras que la aplicación React ofrece una interfaz de usuario amigable para interactuar con la API, lo que resulta en un sistema integrado y fácil de usar.
+Sin acceso al contenido completo de los archivos, especialmente `predictor.py`, este resumen se basa en el contenido parcial disponible y suposiciones sobre estructuras típicas de tales aplicaciones. Para una descripción más detallada y precisa, es necesario tener acceso al contenido completo de todos los archivos.
