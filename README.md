@@ -9,11 +9,10 @@ Ignacio Lizarazu Aramayo
 #### IMPORTANTE
 Para el correcto funcionamiento es importante:
 - MODIFICAR el archivo /fastapi/predictor en la linea 3 donde es necesario introducir el PATH absoluto de la carpeta donde se clono el repositorio
-- En una terminal dirigirse hasta la carpeta de /web/react-gun-detector/ y ejecutar el comando npm install para luego ejecutarlo con npm run start
-- En una terminal diferente dirigirse hasta la carpeta /fastapi/ y ejecutar el comando uvicorn app:app -reload
+- En una terminal dirigirse hasta la carpeta /fastapi/ y ejecutar el comando uvicorn app:app -reload
 
 #### 1. `app.py` (Aplicación FastAPI)
-- *Funcionalidad*: Este archivo Python parece ser la parte de backend de una aplicación web utilizando FastAPI. Incluye importaciones para el manejo de archivos, imágenes y solicitudes HTTP.
+- *Funcionalidad*: Este archivo Python es la parte de backend de una aplicación web utilizando FastAPI. Incluye importaciones para el manejo de archivos, imágenes y solicitudes HTTP.
 - *Características Clave*:
   - Manejo de archivos con CSV y procesamiento de imágenes con OpenCV y PIL.
   - Configuración de FastAPI con rutas para subir y procesar archivos.
