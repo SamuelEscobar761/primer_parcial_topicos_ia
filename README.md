@@ -26,19 +26,6 @@ Para el correcto funcionamiento es importante:
   - Bibliotecas para manejo de archivos e imágenes (`io`, `csv`, `cv2`, `PIL`).
   - Configuración adecuada del módulo `predictor`.
 
-#### 2. `App.js` (Frontend React)
-- *Funcionalidad*: Este archivo JavaScript es parte de un frontend basado en React. Maneja interacciones del usuario, selecciones de archivos y se comunica con el backend.
-- *Características Clave*:
-  - Selección y manejo de archivos para subida.
-  - Integración con Axios para realizar solicitudes HTTP al backend.
-  - Gestión de estado para la selección de archivos, mensajes de predicción y estado del servicio.
-
-- *Requisitos*:
-  - Entorno Node.js.
-  - Biblioteca React.
-  - Axios para solicitudes HTTP.
-  - Archivo CSS para estilos (referenciado como `./App.css`).
-
 #### 3. `predictor.py`
 - *Funcionalidad*: No se pudo acceder al contenido directamente. Presumiblemente, contiene la lógica para hacer predicciones, posiblemente relacionadas con armas y personas, como se infiere de `app.py`.
 - *Requisitos*:
@@ -53,13 +40,7 @@ Para el correcto funcionamiento es importante:
    - Modificar la línea 3 en `predictor.py` para especificar la ruta absoluta donde se clonó el repositorio.
    - Ejecutar `app.py` para iniciar el servidor FastAPI.
 
-2. *Configuración del Frontend (React)*
-   - Asegurarse de que Node.js esté instalado.
-   - Instalar React y Axios.
-   - Ejecutar la aplicación React (`App.js`).
-
 3. *Interacción*
-   - Utilizar el frontend de React para subir archivos.
    - El backend procesa los archivos y devuelve resultados, que se muestran en el frontend.
 
 Sin acceso al contenido completo de los archivos, especialmente `predictor.py`, este resumen se basa en el contenido parcial disponible y suposiciones sobre estructuras típicas de tales aplicaciones. Para una descripción más detallada y precisa, es necesario tener acceso al contenido completo de todos los archivos.
